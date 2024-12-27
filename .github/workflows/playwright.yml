@@ -30,7 +30,6 @@ jobs:
         with:
           name: monocart-report-${{ matrix.shard}}
           path: monocart-report
-          retention-days: 30   
     continue-on-error: true        
             
 
@@ -58,6 +57,32 @@ jobs:
           name: html-report
           path: playwright-report
           retention-days: 30
+      - name : Download Monocart Report
+        uses: actions/download-artifact@v4
+        with:
+          path: monocart-report-1
+          pattern: index.json
+          merge-multiple: true
+      - name : Download Monocart Report
+        uses: actions/download-artifact@v4
+        with:
+          path: monocart-report-2
+          pattern: index.json
+          merge-multiple: true
+      - name : Download Monocart Report
+        uses: actions/download-artifact@v4
+        with:
+          path: monocart-report-3
+          pattern: index.json
+          merge-multiple: true
+      - name: Merge Playwright Report
+        run: node merge.mjs
+      - name: Upload Merged Playwright Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: monocart-report
+          path: monocart-report
+          retention-days: 30                
          
 
        
