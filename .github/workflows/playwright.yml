@@ -24,7 +24,14 @@ jobs:
         if: always()
         with:
           name: blob-report-${{ matrix.shard}}
-          path: blob-report  
+          path: blob-report 
+      - name: Upload Monocart Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: monocart-report-${{ matrix.shard}}
+          path: monocart-report
+          retention-days: 30   
+    continue-on-error: true        
             
 
   merge-reports:
@@ -51,11 +58,6 @@ jobs:
           name: html-report
           path: playwright-report
           retention-days: 30
-      - name: Upload Monocart Report
-        uses: actions/upload-artifact@v4
-        with:
-          name: monocart-report
-          path: monocart-report
-          retention-days: 30     
+         
 
        
