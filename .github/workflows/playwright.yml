@@ -44,7 +44,7 @@ jobs:
           pattern: blob-report-*
           merge-multiple: true
       - name: Merge Playwright Report
-        run: npx playwright merge-reports --report ./all-blob-reports
+        run: npx playwright merge-reports --reporter ./all-blob-reports
       - name: Upload Merged Playwright Report
         uses: actions/upload-artifact@v4
         with:
