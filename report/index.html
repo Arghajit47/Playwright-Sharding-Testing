@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Testing Report</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    Testing Report
+    <button id="dark-mode-toggle" class="dark-mode-btn">🌙</button>
+  </header>
+
+  <div class="container">
+    <h2>Available Reports</h2>
+    <p>Select a category to explore detailed testing results.</p>
+
+    <!-- Dynamic categories will be rendered here -->
+    <div id="categories" class="grid"></div>
+
+    <!-- Folder Structure (Hidden by default) -->
+    <div id="folder-structure" style="display: none;">
+      
+      <div id="report-container" data-category=""></div>
+    </div>
+  </div>
+
+  <footer>
+    &copy; Test Report Insights | Built dynamically by <b>Arghajit Singha</b>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "allure-test-report": "npx allure generate --clean --single-file allure-results"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
