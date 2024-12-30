@@ -70,7 +70,7 @@ jobs:
           merge-multiple: true
  
       - name: Generate allure report
-        run: npx allure generate --clean --single-file allure-results
+        run: npm run allure-test-report
  
       - name: Upload Allure results
         uses: actions/upload-artifact@v4
