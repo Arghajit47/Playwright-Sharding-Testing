@@ -86,11 +86,8 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: new-report
-          path: index.html
+          path: |
+            index.html
+            report/
           retention-days: 5
-      - name: Upload All-in-One reporter supproting files
-        uses: actions/upload-artifact@v4
-        with:
-          name: new-reporter utils
-          path: report/
-          retention-days: 5
+      
