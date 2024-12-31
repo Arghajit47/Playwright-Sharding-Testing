@@ -60,13 +60,7 @@ jobs:
         with:
           name: playwright-report
           path: playwright-report
-          retention-days: 1
-      # - name: Deploy Playwright Report to Netlify
-      #   if: always()
-      #   run: |
-      #     npx netlify deploy --site cf737fea-218c-45b0-b5a2-d1246cb10c83 --prod --dir playwright-report
-      #   env:
-      #     NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}    
+          retention-days: 1  
       - name: Download Allure Results
         uses: actions/download-artifact@v4
         with:
@@ -82,13 +76,7 @@ jobs:
         with:
           name: allure-report
           path: allure-report/
-          retention-days: 1
-      # - name: Deploy Allure Report to Netlify
-      #   if: always()
-      #   run: |
-      #     npx netlify deploy --site cf737fea-218c-45b0-b5a2-d1246cb10c83 --prod --dir allure-report
-      #   env:
-      #     NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}    
+          retention-days: 1  
 
       - name: Generate Overall Test Report
         run: npm run folderStructure
@@ -103,14 +91,6 @@ jobs:
             report/
           retention-days: 5
           
-      # - name: Deploy Custom Report to Netlify
-      #   if: always()
-      #   run: |
-      #     npx netlify deploy --site cf737fea-218c-45b0-b5a2-d1246cb10c83 --prod --dir new-report
-      #   env:
-      #     NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-
-
       - name: Deploy Allure and Playwright Reports to Netlify
         if: always()
         run: |
@@ -124,3 +104,17 @@ jobs:
           npx netlify deploy --site cf737fea-218c-45b0-b5a2-d1246cb10c83 --prod --dir .
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+
+      - name: Deploy Reports to netlify
+        if: always()
+        run: |
+          mkdir combined-report
+          cp -r allure-report/* combined-report/
+          cp -r playwright-report/* combined-report/
+          cp -r report/* combined-report/
+          cp index.html combined-report/
+  
+          npx netlify deploy --site cf737fea-218c-45b0-b5a2-d1246cb10c83 --prod --dir combined-report/
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+

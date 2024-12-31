@@ -112,7 +112,7 @@ async function setupReportViewer() {
 // Function to fetch folder structure JSON
 async function fetchFolderStructure() {
   try {
-    const response = await fetch("/report/folderStructure.json"); // Adjusted path to root folder
+    const response = await fetch("report/folderStructure.json"); // Adjusted path to root folder
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
