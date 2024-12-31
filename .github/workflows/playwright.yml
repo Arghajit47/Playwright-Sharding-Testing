@@ -60,7 +60,7 @@ jobs:
         with:
           name: html-report
           path: playwright-report
-          retention-days: 30
+          retention-days: 1
       - name: Download Allure Results
         uses: actions/download-artifact@v4
         with:
@@ -71,16 +71,26 @@ jobs:
       - name: Generate allure report
         run: npm run allure-test-report
 
-      - name: Upload Allure results
-        uses: actions/upload-artifact@v4
-        with:
-          name: allure-results
-          path: allure-results/
-          retention-days: 30
-
       - name: Upload Allure report
         uses: actions/upload-artifact@v4
         with:
           name: allure-report
           path: allure-report/
-          retention-days: 30
+          retention-days: 1
+
+      - name: Generate Overall Test Report
+        run: npm run folderStructure
+      - name: Wait for 10 seconds before generating the report
+        run: sleep 10
+      - name: Upload All-in-One report
+        uses: actions/upload-artifact@v4
+        with:
+          name: new-report
+          path: index.html
+          retention-days: 5
+      - name: Upload All-in-One reporter supproting files
+        uses: actions/upload-artifact@v4
+        with:
+          name: new-reporter utils
+          path: report/
+          retention-days: 5
