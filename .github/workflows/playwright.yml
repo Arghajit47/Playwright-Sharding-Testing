@@ -1,7 +1,9 @@
 name: Playwright Tests
 on:
   push:
-    branches: [main]
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
 jobs:
   playwright-test:
     timeout-minutes: 60
@@ -24,7 +26,7 @@ jobs:
         if: always()
         with:
           name: blob-report-${{ matrix.shard}}
-          path: blob-report 
+          path: blob-report
       - name: Upload Allure results
         if: success() || failure()
         uses: actions/upload-artifact@v4
@@ -33,8 +35,7 @@ jobs:
           path: allure-results/
           retention-days: 1
 
-    continue-on-error: true        
-            
+    continue-on-error: true
 
   merge-reports:
     needs: [playwright-test]
@@ -46,7 +47,7 @@ jobs:
           node-version: lts/*
       - name: Install dependencies
         run: npm ci
-      - name : Download Artifacts
+      - name: Download Artifacts
         uses: actions/download-artifact@v4
         with:
           path: all-blob-reports
@@ -59,30 +60,37 @@ jobs:
         with:
           name: html-report
           path: playwright-report
-          retention-days: 30
+          retention-days: 1
       - name: Download Allure Results
         uses: actions/download-artifact@v4
         with:
           path: allure-results/
           pattern: allure-results-*
           merge-multiple: true
- 
+
       - name: Generate allure report
-        run: npx allure generate --clean --single-file allure-results
- 
-      - name: Upload Allure results
-        uses: actions/upload-artifact@v4
-        with:
-          name: allure-results
-          path: allure-results/
-          retention-days: 30
- 
+        run: npm run allure-test-report
+
       - name: Upload Allure report
         uses: actions/upload-artifact@v4
         with:
           name: allure-report
           path: allure-report/
-          retention-days: 30                
-         
+          retention-days: 1
 
-       
+      - name: Generate Overall Test Report
+        run: npm run folderStructure
+      - name: Wait for 10 seconds before generating the report
+        run: sleep 10
+      - name: Upload All-in-One report
+        uses: actions/upload-artifact@v4
+        with:
+          name: new-report
+          path: index.html
+          retention-days: 5
+      - name: Upload All-in-One reporter supproting files
+        uses: actions/upload-artifact@v4
+        with:
+          name: new-reporter utils
+          path: report/
+          retention-days: 5

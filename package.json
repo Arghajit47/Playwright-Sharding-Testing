@@ -3,7 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "folderStructure": "cd report/ && node app.js ",
+    "allure-test-report": "npx allure generate --clean --single-file allure-results"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
