@@ -138,7 +138,7 @@ h3 {
   --text-color: #333;
   --card-background: #ffffff;
   --header-background: linear-gradient(90deg, #4facfe, #00f2fe);
-  --footer-background: #4facfe;
+  --footer-background: linear-gradient(90deg, #4facfe, #00f2fe);
 }
 
 /* Dark mode variables */
@@ -147,7 +147,7 @@ h3 {
   --text-color: #e4e6eb;
   --card-background: #242526;
   --header-background: linear-gradient(90deg, #2a2a72, #009ffd);
-  --footer-background: #2a2a72;
+  --footer-background: linear-gradient(90deg, #2a2a72, #009ffd);
 }
 
 /* Apply variables globally */
@@ -227,7 +227,7 @@ footer {
   text-align: center;
   padding: 10px 15px; /* Adjust padding for responsiveness */
   font-size: 1rem; /* Base font size */
-  color: #333; /* Dark gray text */
+  color: #ffffff; /* White text */
   width: 100%; /* Full width */
   box-sizing: border-box; /* Include padding in width calculation */
 }
