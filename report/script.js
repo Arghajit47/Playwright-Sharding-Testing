@@ -1,3 +1,14 @@
+window.addEventListener("load", () => {
+  const loader = document.getElementById("loader");
+  const content = document.getElementById("content");
+
+  // Simulate a delay to show the loader (optional, for demo purposes)
+  setTimeout(() => {
+    loader.style.display = "none";
+    content.style.display = "block";
+  }, 1000); // Adjust the time as needed
+});
+
 // Function to toggle the folder structure section
 function toggleReports(category, data) {
   const folderStructure = document.getElementById("folder-structure");
