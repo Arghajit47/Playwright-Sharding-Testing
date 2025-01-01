@@ -170,6 +170,45 @@ footer {
   background: var(--card-background);
 }
 
+/* Header wrapper to apply flexbox */
+.header-wrapper {
+  display: flex; /* Use Flexbox */
+  align-items: center; /* Center-align items vertically */
+  justify-content: space-between; /* Ensure items are spaced */
+  padding: 10px 20px; /* Add some padding */
+  background: linear-gradient(90deg, #4facfe, #00f2fe); /* Gradient background */
+  color: white; /* Header text color */
+  font-size: 1.5rem; /* Adjust font size */
+}
+
+/* Header text content */
+.headerContent {
+  flex-grow: 1; /* Allow this div to take maximum available space */
+  text-align: center; /* Align text to the left */
+  white-space: nowrap; /* Prevent text wrapping */
+  overflow: hidden; /* Hide overflowing content */
+  text-overflow: ellipsis; /* Add ellipsis if text overflows */
+  padding-right: 10px; /* Add space between text and button */
+}
+
+/* Dark mode button container */
+.dark-mode {
+  flex-shrink: 0; /* Prevent shrinking of this container */
+}
+
+@media (max-width: 768px) {
+  .header-wrapper {
+    font-size: 1.5rem; /* Reduce font size for smaller screens */
+    padding: 5px 10px; /* Adjust padding */
+  }
+
+  .dark-mode-btn {
+    font-size: 1rem; /* Smaller button text */
+    padding: 5px 8px; /* Adjust button padding */
+  }
+}
+
+
 /* Dark Mode Toggle Button */
 .dark-mode-btn {
   position: absolute;
@@ -188,6 +227,7 @@ footer {
   background-color: var(--text-color);
   color: var(--background-color);
 }
+
 
 /* Container Styles */
 .container {
