@@ -1,18 +1,18 @@
-# <p align="center"> Playwright-Sharding-Testing </p>
+#  Playwright-Sharding-Testing 
 
-<p align="center">
-This repository demonstrates how to run <b>Playwright</b> tests with sharding and generate reports using <b>GitHub Actions</b>.
-</p>
 
-<hr>
+This repository demonstrates how to run Playwright tests with sharding and generate reports using GitHub Actions.
 
-## <p align="center"> Workflow Overview </p>
+
+
+
+##  Workflow Overview 
 
 The GitHub Actions workflow defined in `playwright.yml` is responsible for running Playwright tests in parallel using sharding and generating both Playwright and Allure reports.
 
 ---
 
-## <p align="center"> Workflow Steps </p>
+##  Workflow Steps 
 
 ### **Job: playwright-test**
 
@@ -57,7 +57,7 @@ The GitHub Actions workflow defined in `playwright.yml` is responsible for runni
 
 ---
 
-## <p align="center"> Artifacts </p>
+##  Artifacts 
 
 - **Blob Report**: The Playwright test results are uploaded as blob reports.
 - **Allure Results**: The raw results for Allure are uploaded.
@@ -72,7 +72,7 @@ The GitHub Actions workflow defined in `playwright.yml` is responsible for runni
 
 ---
 
-## <p align="center"> Running Locally </p>
+##  Running Locally 
 
 To run the tests locally, you can use the following commands:
 
@@ -102,7 +102,7 @@ npx allure generate --clean --single-file allure-results
 
 ---
 
-## <p align="center"> License </p>
+##  License 
 
 This project is licensed under the **MIT License**. See the `LICENSE` file for details.
 
