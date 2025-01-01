@@ -58,9 +58,9 @@ jobs:
       - name: Upload Merged Playwright Report
         uses: actions/upload-artifact@v4
         with:
-          name: html-report
+          name: playwright-report
           path: playwright-report
-          retention-days: 1
+          retention-days: 1  
       - name: Download Allure Results
         uses: actions/download-artifact@v4
         with:
@@ -76,7 +76,7 @@ jobs:
         with:
           name: allure-report
           path: allure-report/
-          retention-days: 1
+          retention-days: 1  
 
       - name: Generate Overall Test Report
         run: npm run folderStructure
@@ -86,11 +86,25 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: new-report
-          path: index.html
+          path: |
+            index.html
+            report/
           retention-days: 5
-      - name: Upload All-in-One reporter supproting files
-        uses: actions/upload-artifact@v4
-        with:
-          name: new-reporter utils
-          path: report/
-          retention-days: 5
+
+      - name: Deploy Reports to netlify
+        if: always()
+        run: |
+          rm -rf combined-report
+          mkdir combined-report
+          cp -r allure-report/ combined-report/
+          cp -r playwright-report/ combined-report/
+          cp -r report combined-report/
+          cp index.html combined-report/
+  
+          npx netlify deploy --site cf737fea-218c-45b0-b5a2-d1246cb10c83 --prod --dir combined-report
+
+          echo "To see the final report kindly visit https://all-report-management.netlify.app/"
+
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+

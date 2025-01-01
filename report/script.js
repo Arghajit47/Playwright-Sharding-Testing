@@ -1,3 +1,14 @@
+window.addEventListener("load", () => {
+  const loader = document.getElementById("loader");
+  const content = document.getElementById("content");
+
+  // Simulate a delay to show the loader (optional, for demo purposes)
+  setTimeout(() => {
+    loader.style.display = "none";
+    content.style.display = "block";
+  }, 1000); // Adjust the time as needed
+});
+
 // Function to toggle the folder structure section
 function toggleReports(category, data) {
   const folderStructure = document.getElementById("folder-structure");
@@ -112,7 +123,7 @@ async function setupReportViewer() {
 // Function to fetch folder structure JSON
 async function fetchFolderStructure() {
   try {
-    const response = await fetch("/report/folderStructure.json"); // Adjusted path to root folder
+    const response = await fetch("report/folderStructure.json"); // Adjusted path to root folder
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
