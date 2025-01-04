@@ -23,7 +23,7 @@ jobs:
       # - name: Setting up
       #   run: npm run setup  
       - name: Run Playwright tests
-        run: npm run visual-test --shard=${{ matrix.shard }}/3
+        run: npx playwright test --grep @test --shard=${{ matrix.shard }}/3
       - uses: actions/upload-artifact@v4
         if: always()
         with:
