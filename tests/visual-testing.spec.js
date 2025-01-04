@@ -202,7 +202,7 @@ test.describe("Take screenshots for Visual Regression Testing", () => {
     await helper.validateMismatch(test, mismatch, diffScreenshot);
   });
 
-  test.only(
+  test(
     "Home page of Playwright - fail",
     { tag: "@setup" },
     async ({ page }) => {
@@ -376,27 +376,23 @@ test.describe("Visual Regression Testing with ResembleJs", () => {
     await helper.validateMismatch(test, mismatch, diffScreenshot);
   });
 
-  test.only(
-    "Home page of Playwright - fail",
-    { tag: "@test" },
-    async ({ page }) => {
-      await allure.severity("critical");
-      const currentScreenshot = `${currentDir}/Home-page-playwright-current.png`;
-      const baselineScreenshot = `${baselineDir}/Home-page-playwright-baseline.png`;
-      const diffScreenshot = `${diffDir}/Home-page-playwright-diff.png`;
+  test("Home page of Playwright - fail", { tag: "@test" }, async ({ page }) => {
+    await allure.severity("critical");
+    const currentScreenshot = `${currentDir}/Home-page-playwright-current.png`;
+    const baselineScreenshot = `${baselineDir}/Home-page-playwright-baseline.png`;
+    const diffScreenshot = `${diffDir}/Home-page-playwright-diff.png`;
 
-      await page.goto("https://playwright.dev/docs/intro");
-      await helper.wait(); // Use the helper's wait method
-      await page.screenshot({ path: currentScreenshot, fullPage: true });
+    await page.goto("https://playwright.dev/docs/intro");
+    await helper.wait(); // Use the helper's wait method
+    await page.screenshot({ path: currentScreenshot, fullPage: true });
 
-      const mismatch = await helper.compareScreenshots(
-        currentScreenshot,
-        baselineScreenshot,
-        diffScreenshot
-      );
+    const mismatch = await helper.compareScreenshots(
+      currentScreenshot,
+      baselineScreenshot,
+      diffScreenshot
+    );
 
-      console.log(`Mismatch for ${test.info().title}: ${mismatch}%`);
-      await helper.validateMismatch(test, mismatch, diffScreenshot);
-    }
-  );
+    console.log(`Mismatch for ${test.info().title}: ${mismatch}%`);
+    await helper.validateMismatch(test, mismatch, diffScreenshot);
+  });
 });
