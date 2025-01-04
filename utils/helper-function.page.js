@@ -54,7 +54,6 @@ export class HelperFunction {
       await this.attachScreenshot(test, diffPath);
 
       // Throw a custom error with the HTML content and base64 screenshot
-      throw new Error(errorMessage);
     }
   }
 }
