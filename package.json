@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "setup": "rm -rf screenshots/",
+    "setup": "rm -rf screenshots/current && rm -rf screenshots/diff",
     "visual-test": "npx playwright test --grep @setup && npx playwright test --grep @test",
     "folderStructure": "cd report/ && node app.js ",
     "allure-test-report": "npx allure generate --clean --single-file allure-results"
