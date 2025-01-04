@@ -7,3 +7,5 @@ allure-report
 allure-results
 folderStructure.json
 .allure
+/screenshots/diff
+/screenshots/current
