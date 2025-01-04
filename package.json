@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "setup": "rm -rf screenshots/ && rm -rf allure-report/ && rm -rf allure-results/",
-    "visual-test": "npx playwright test --grep @setup visual-testing.spec.js && npx playwright test --grep @test visual-testing.spec.js",
+    "visual-test": "npx playwright test --grep @setup && npx playwright test --grep @test",
     "folderStructure": "cd report/ && node app.js ",
     "allure-test-report": "npx allure generate --clean --single-file allure-results"
   },

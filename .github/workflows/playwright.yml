@@ -20,6 +20,8 @@ jobs:
         run: npm ci
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
+      - name: Setting up the project
+        run: npm run setup
       - name: Run Playwright tests
         run: npm run visual-test --shard=${{ matrix.shard }}/3
       - uses: actions/upload-artifact@v4
