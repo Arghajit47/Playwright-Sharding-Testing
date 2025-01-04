@@ -64,7 +64,7 @@ test.describe("Take screenshots for Visual Regression Testing", () => {
     );
 
     console.log(`Mismatch for ${test.info().title}: ${mismatch}%`);
-    await helper.validateMismatch(mismatch, diffScreenshot);
+    await helper.validateMismatch(test, mismatch, diffScreenshot);
   });
 
   test("Catagory Windmills page", { tag: "@setup" }, async ({ page }) => {
@@ -91,7 +91,7 @@ test.describe("Take screenshots for Visual Regression Testing", () => {
     );
 
     console.log(`Mismatch for ${test.info().title}: ${mismatch}%`);
-    await helper.validateMismatch(mismatch, diffScreenshot);
+    await helper.validateMismatch(test, mismatch, diffScreenshot);
   });
 
   test("Catagory Modern page", { tag: "@setup" }, async ({ page }) => {
@@ -118,7 +118,7 @@ test.describe("Take screenshots for Visual Regression Testing", () => {
     );
 
     console.log(`Mismatch for ${test.info().title}: ${mismatch}%`);
-    await helper.validateMismatch(mismatch, diffScreenshot);
+    await helper.validateMismatch(test, mismatch, diffScreenshot);
   });
 
   test("Catagory Countryside page", { tag: "@setup" }, async ({ page }) => {
@@ -145,7 +145,7 @@ test.describe("Take screenshots for Visual Regression Testing", () => {
     );
 
     console.log(`Mismatch for ${test.info().title}: ${mismatch}%`);
-    await helper.validateMismatch(mismatch, diffScreenshot);
+    await helper.validateMismatch(test, mismatch, diffScreenshot);
   });
 
   test("Catagory Pools page", { tag: "@setup" }, async ({ page }) => {
@@ -172,7 +172,7 @@ test.describe("Take screenshots for Visual Regression Testing", () => {
     );
 
     console.log(`Mismatch for ${test.info().title}: ${mismatch}%`);
-    await helper.validateMismatch(mismatch, diffScreenshot);
+    await helper.validateMismatch(test, mismatch, diffScreenshot);
   });
 
   test("Catagory Islands page", { tag: "@setup" }, async ({ page }) => {
@@ -199,8 +199,30 @@ test.describe("Take screenshots for Visual Regression Testing", () => {
     );
 
     console.log(`Mismatch for ${test.info().title}: ${mismatch}%`);
-    await helper.validateMismatch(mismatch, diffScreenshot);
+    await helper.validateMismatch(test, mismatch, diffScreenshot);
   });
+
+  test.only(
+    "Home page of Playwright - fail",
+    { tag: "@setup" },
+    async ({ page }) => {
+      await allure.severity("minor");
+      const currentScreenshot = `${currentDir}/Home-page-playwright-current.png`;
+      const baselineScreenshot = `${baselineDir}/Home-page-playwright-baseline.png`;
+      const diffScreenshot = `${diffDir}/Home-page-playwright-diff.png`;
+
+      await page.goto("https://playwright.dev/docs/intro");
+      await helper.wait(); // Use the helper's wait method
+      await page.screenshot({ path: currentScreenshot, fullPage: true });
+
+      if (!fs.existsSync(baselineScreenshot)) {
+        console.log(`Creating baseline for ${test.info().title} test...`);
+        fs.copyFileSync(currentScreenshot, baselineScreenshot);
+        console.log("Baseline created. Run the test again for comparisons.");
+        return;
+      }
+    }
+  );
 });
 
 test.describe("Visual Regression Testing with ResembleJs", () => {
@@ -231,7 +253,7 @@ test.describe("Visual Regression Testing with ResembleJs", () => {
     );
 
     console.log(`Mismatch for ${test.info().title}: ${mismatch}%`);
-    await helper.validateMismatch(mismatch, diffScreenshot);
+    await helper.validateMismatch(test, mismatch, diffScreenshot);
   });
 
   test("Catagory Beach page", { tag: "@test" }, async ({ page }) => {
@@ -251,7 +273,7 @@ test.describe("Visual Regression Testing with ResembleJs", () => {
     );
 
     console.log(`Mismatch for ${test.info().title}: ${mismatch}%`);
-    await helper.validateMismatch(mismatch, diffScreenshot);
+    await helper.validateMismatch(test, mismatch, diffScreenshot);
   });
 
   test("Catagory Windmills page", { tag: "@test" }, async ({ page }) => {
@@ -271,7 +293,7 @@ test.describe("Visual Regression Testing with ResembleJs", () => {
     );
 
     console.log(`Mismatch for ${test.info().title}: ${mismatch}%`);
-    await helper.validateMismatch(mismatch, diffScreenshot);
+    await helper.validateMismatch(test, mismatch, diffScreenshot);
   });
 
   test("Catagory Modern page", { tag: "@test" }, async ({ page }) => {
@@ -291,7 +313,7 @@ test.describe("Visual Regression Testing with ResembleJs", () => {
     );
 
     console.log(`Mismatch for ${test.info().title}: ${mismatch}%`);
-    await helper.validateMismatch(mismatch, diffScreenshot);
+    await helper.validateMismatch(test, mismatch, diffScreenshot);
   });
 
   test("Catagory Countryside page", { tag: "@test" }, async ({ page }) => {
@@ -311,7 +333,7 @@ test.describe("Visual Regression Testing with ResembleJs", () => {
     );
 
     console.log(`Mismatch for ${test.info().title}: ${mismatch}%`);
-    await helper.validateMismatch(mismatch, diffScreenshot);
+    await helper.validateMismatch(test, mismatch, diffScreenshot);
   });
 
   test("Catagory Pools page", { tag: "@test" }, async ({ page }) => {
@@ -331,7 +353,7 @@ test.describe("Visual Regression Testing with ResembleJs", () => {
     );
 
     console.log(`Mismatch for ${test.info().title}: ${mismatch}%`);
-    await helper.validateMismatch(mismatch, diffScreenshot);
+    await helper.validateMismatch(test, mismatch, diffScreenshot);
   });
 
   test("Catagory Islands page", { tag: "@test" }, async ({ page }) => {
@@ -351,6 +373,30 @@ test.describe("Visual Regression Testing with ResembleJs", () => {
     );
 
     console.log(`Mismatch for ${test.info().title}: ${mismatch}%`);
-    await helper.validateMismatch(mismatch, diffScreenshot);
+    await helper.validateMismatch(test, mismatch, diffScreenshot);
   });
+
+  test.only(
+    "Home page of Playwright - fail",
+    { tag: "@test" },
+    async ({ page }) => {
+      await allure.severity("critical");
+      const currentScreenshot = `${currentDir}/Home-page-playwright-current.png`;
+      const baselineScreenshot = `${baselineDir}/Home-page-playwright-baseline.png`;
+      const diffScreenshot = `${diffDir}/Home-page-playwright-diff.png`;
+
+      await page.goto("https://playwright.dev/docs/intro");
+      await helper.wait(); // Use the helper's wait method
+      await page.screenshot({ path: currentScreenshot, fullPage: true });
+
+      const mismatch = await helper.compareScreenshots(
+        currentScreenshot,
+        baselineScreenshot,
+        diffScreenshot
+      );
+
+      console.log(`Mismatch for ${test.info().title}: ${mismatch}%`);
+      await helper.validateMismatch(test, mismatch, diffScreenshot);
+    }
+  );
 });

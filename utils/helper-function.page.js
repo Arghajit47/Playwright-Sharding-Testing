@@ -1,8 +1,7 @@
 const { expect } = require("@playwright/test");
 import resemble from "resemblejs";
 import fs from "fs";
-const allure = require("allure-js-commons");
-const { ContentType } = require("allure-js-commons");
+
 
 export class HelperFunction {
   constructor(page) {
@@ -35,27 +34,27 @@ export class HelperFunction {
   async captureBase64Screenshot(diffPath) {
     return diffPath.toString("base64");
   }
+  async attachScreenshot(test, screenshotPath) {
+    test.info().attachments.push({
+      name: "Screenshot",
+      path: screenshotPath,
+      contentType: "image/png",
+    });
+  }
 
-  async validateMismatch(mismatch, diffPath) {
+  async validateMismatch(test, mismatch, diffPath) {
     try {
       expect(parseFloat(mismatch)).toBeLessThan(1);
     } catch (error) {
       // Log the error message with the base64 encoded screenshot
       const errorMessage = `Mismatch for Home page: ${mismatch}`;
 
-      // Log the error with the HTML image tag
+      // Log the error
       console.error(errorMessage);
-      await allure.attachmentPath("Screenshot", diffPath, {
-        contentType: ContentType.PNG,
-        fileExtension: "png",
-      });
+      await this.attachScreenshot(test, diffPath);
 
       // Throw a custom error with the HTML content and base64 screenshot
       throw new Error(errorMessage);
     }
-  }
-
-  async declareTags(test, tag) {
-    test.info().annotations.push({ type: "severity", value: tag });
   }
 }
