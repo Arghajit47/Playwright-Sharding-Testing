@@ -211,7 +211,7 @@ test.describe("Take screenshots for Visual Regression Testing", () => {
       const baselineScreenshot = `${baselineDir}/Home-page-playwright-baseline.png`;
       const diffScreenshot = `${diffDir}/Home-page-playwright-diff.png`;
 
-      await page.goto("https://playwright.dev/docs/intro");
+      await page.goto("https://playwright.dev");
       await helper.wait(); // Use the helper's wait method
       await page.screenshot({ path: currentScreenshot, fullPage: true });
 
