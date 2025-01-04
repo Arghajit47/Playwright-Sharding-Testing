@@ -2,6 +2,7 @@
 const { test } = require("@playwright/test");
 const fs = require("fs");
 const { HelperFunction } = require("../utils/helper-function.page");
+const allure = require("allure-js-commons");
 
 test.describe.configure({ mode: "serial" });
 
@@ -22,6 +23,7 @@ test.describe("Take screenshots for Visual Regression Testing", () => {
   });
 
   test("Home page", { tag: "@setup" }, async ({ page }) => {
+    await allure.severity("minor");
     const currentScreenshot = `${currentDir}/Home-page-current.png`;
     const baselineScreenshot = `${baselineDir}/Home-page-baseline.png`;
     const diffScreenshot = `${diffDir}/Home-page-diff.png`;
@@ -39,6 +41,7 @@ test.describe("Take screenshots for Visual Regression Testing", () => {
   });
 
   test("Catagory Beach page", { tag: "@setup" }, async ({ page }) => {
+    await allure.severity("minor");
     const currentScreenshot = `${currentDir}/catagory-beach-page-current.png`;
     const baselineScreenshot = `${baselineDir}/catagory-beach-page-baseline.png`;
     const diffScreenshot = `${diffDir}/catagory-beach-page-diff.png`;
@@ -65,6 +68,7 @@ test.describe("Take screenshots for Visual Regression Testing", () => {
   });
 
   test("Catagory Windmills page", { tag: "@setup" }, async ({ page }) => {
+    await allure.severity("minor");
     const currentScreenshot = `${currentDir}/catagory-windmills-page-current.png`;
     const baselineScreenshot = `${baselineDir}/catagory-windmills-page-baseline.png`;
     const diffScreenshot = `${diffDir}/catagory-windmills-page-diff.png`;
@@ -91,6 +95,7 @@ test.describe("Take screenshots for Visual Regression Testing", () => {
   });
 
   test("Catagory Modern page", { tag: "@setup" }, async ({ page }) => {
+    await allure.severity("minor");
     const currentScreenshot = `${currentDir}/catagory-modern-page-current.png`;
     const baselineScreenshot = `${baselineDir}/catagory-modern-page-baseline.png`;
     const diffScreenshot = `${diffDir}/catagory-modern-page-diff.png`;
@@ -117,6 +122,7 @@ test.describe("Take screenshots for Visual Regression Testing", () => {
   });
 
   test("Catagory Countryside page", { tag: "@setup" }, async ({ page }) => {
+    await allure.severity("minor");
     const currentScreenshot = `${currentDir}/catagory-countryside-page-current.png`;
     const baselineScreenshot = `${baselineDir}/catagory-countryside-page-baseline.png`;
     const diffScreenshot = `${diffDir}/catagory-countryside-page-diff.png`;
@@ -143,6 +149,7 @@ test.describe("Take screenshots for Visual Regression Testing", () => {
   });
 
   test("Catagory Pools page", { tag: "@setup" }, async ({ page }) => {
+    await allure.severity("minor");
     const currentScreenshot = `${currentDir}/catagory-pools-page-current.png`;
     const baselineScreenshot = `${baselineDir}/catagory-pools-page-baseline.png`;
     const diffScreenshot = `${diffDir}/catagory-pools-page-diff.png`;
@@ -169,6 +176,7 @@ test.describe("Take screenshots for Visual Regression Testing", () => {
   });
 
   test("Catagory Islands page", { tag: "@setup" }, async ({ page }) => {
+    await allure.severity("minor");
     const currentScreenshot = `${currentDir}/catagory-islands-page-current.png`;
     const baselineScreenshot = `${baselineDir}/catagory-islands-page-baseline.png`;
     const diffScreenshot = `${diffDir}/catagory-islands-page-diff.png`;
@@ -207,6 +215,7 @@ test.describe("Visual Regression Testing with ResembleJs", () => {
   });
 
   test("Home page", { tag: "@test" }, async ({ page }) => {
+    await allure.severity("critical");
     const currentScreenshot = `${currentDir}/Home-page-current.png`;
     const baselineScreenshot = `${baselineDir}/Home-page-baseline.png`;
     const diffScreenshot = `${diffDir}/Home-page-diff.png`;
@@ -226,6 +235,7 @@ test.describe("Visual Regression Testing with ResembleJs", () => {
   });
 
   test("Catagory Beach page", { tag: "@test" }, async ({ page }) => {
+    await allure.severity("critical");
     const currentScreenshot = `${currentDir}/catagory-beach-page-current.png`;
     const baselineScreenshot = `${baselineDir}/catagory-beach-page-baseline.png`;
     const diffScreenshot = `${diffDir}/catagory-beach-page-diff.png`;
@@ -245,6 +255,7 @@ test.describe("Visual Regression Testing with ResembleJs", () => {
   });
 
   test("Catagory Windmills page", { tag: "@test" }, async ({ page }) => {
+    await allure.severity("critical");
     const currentScreenshot = `${currentDir}/catagory-windmills-page-current.png`;
     const baselineScreenshot = `${baselineDir}/catagory-windmills-page-baseline.png`;
     const diffScreenshot = `${diffDir}/catagory-windmills-page-diff.png`;
@@ -264,6 +275,7 @@ test.describe("Visual Regression Testing with ResembleJs", () => {
   });
 
   test("Catagory Modern page", { tag: "@test" }, async ({ page }) => {
+    await allure.severity("critical");
     const currentScreenshot = `${currentDir}/catagory-modern-page-current.png`;
     const baselineScreenshot = `${baselineDir}/catagory-modern-page-baseline.png`;
     const diffScreenshot = `${diffDir}/catagory-modern-page-diff.png`;
@@ -283,6 +295,7 @@ test.describe("Visual Regression Testing with ResembleJs", () => {
   });
 
   test("Catagory Countryside page", { tag: "@test" }, async ({ page }) => {
+    await allure.severity("critical");
     const currentScreenshot = `${currentDir}/catagory-countryside-page-current.png`;
     const baselineScreenshot = `${baselineDir}/catagory-countryside-page-baseline.png`;
     const diffScreenshot = `${diffDir}/catagory-countryside-page-diff.png`;
@@ -302,6 +315,7 @@ test.describe("Visual Regression Testing with ResembleJs", () => {
   });
 
   test("Catagory Pools page", { tag: "@test" }, async ({ page }) => {
+    await allure.severity("critical");
     const currentScreenshot = `${currentDir}/catagory-pools-page-current.png`;
     const baselineScreenshot = `${baselineDir}/catagory-pools-page-baseline.png`;
     const diffScreenshot = `${diffDir}/catagory-pools-page-diff.png`;
@@ -321,6 +335,7 @@ test.describe("Visual Regression Testing with ResembleJs", () => {
   });
 
   test("Catagory Islands page", { tag: "@test" }, async ({ page }) => {
+    await allure.severity("critical");
     const currentScreenshot = `${currentDir}/catagory-islands-page-current.png`;
     const baselineScreenshot = `${baselineDir}/catagory-islands-page-baseline.png`;
     const diffScreenshot = `${diffDir}/catagory-islands-page-diff.png`;

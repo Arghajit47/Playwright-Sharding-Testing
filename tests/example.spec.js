@@ -1,7 +1,9 @@
 // @ts-check
 const { test, expect } = require('@playwright/test');
+const allure = require("allure-js-commons");
 
 test("has title", { tag: "@test" }, async ({ page }) => {
+  await allure.severity("normal");
   await page.goto("https://playwright.dev/");
 
   // Expect a title "to contain" a substring.
@@ -9,6 +11,7 @@ test("has title", { tag: "@test" }, async ({ page }) => {
 });
 
 test("get started link", { tag: "@test" }, async ({ page }) => {
+  await allure.severity("normal");
   await page.goto("https://playwright.dev/");
 
   // Click the get started link.
@@ -19,3 +22,4 @@ test("get started link", { tag: "@test" }, async ({ page }) => {
     page.getByRole("heading", { name: "Installation" })
   ).toBeVisible();
 });
+

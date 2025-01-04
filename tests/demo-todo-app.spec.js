@@ -1,5 +1,6 @@
 // @ts-check
 const { test, expect } = require('@playwright/test');
+const allure = require("allure-js-commons");
 
 test.beforeEach(async ({ page }) => {
   await page.goto("https://demo.playwright.dev/todomvc");
@@ -16,6 +17,7 @@ test.describe("New Todo", () => {
     "should allow me to add todo items",
     { tag: "@test" },
     async ({ page }) => {
+      await allure.severity("normal");
       // create a new todo locator
       const newTodo = page.getByPlaceholder("What needs to be done?");
 
@@ -44,6 +46,7 @@ test.describe("New Todo", () => {
     "should clear text input field when an item is added",
     { tag: "@test" },
     async ({ page }) => {
+      await allure.severity("normal");
       // create a new todo locator
       const newTodo = page.getByPlaceholder("What needs to be done?");
 
@@ -61,6 +64,7 @@ test.describe("New Todo", () => {
     "should append new items to the bottom of the list",
     { tag: "@test" },
     async ({ page }) => {
+      await allure.severity("normal");
       // Create 3 items.
       await createDefaultTodos(page);
 
@@ -94,6 +98,7 @@ test.describe("Mark all as completed", () => {
     "should allow me to mark all items as completed",
     { tag: "@test" },
     async ({ page }) => {
+      await allure.severity("normal");
       // Complete all todos.
       await page.getByLabel("Mark all as complete").check();
 
@@ -111,6 +116,7 @@ test.describe("Mark all as completed", () => {
     "should allow me to clear the complete state of all items",
     { tag: "@test" },
     async ({ page }) => {
+      await allure.severity("normal");
       const toggleAll = page.getByLabel("Mark all as complete");
       // Check and then immediately uncheck.
       await toggleAll.check();
@@ -125,6 +131,7 @@ test.describe("Mark all as completed", () => {
     "complete all checkbox should update state when items are completed / cleared",
     { tag: "@test" },
     async ({ page }) => {
+      await allure.severity("normal");
       const toggleAll = page.getByLabel("Mark all as complete");
       await toggleAll.check();
       await expect(toggleAll).toBeChecked();
@@ -151,6 +158,7 @@ test.describe("Item", () => {
     "should allow me to mark items as complete",
     { tag: "@test" },
     async ({ page }) => {
+      await allure.severity("normal");
       // create a new todo locator
       const newTodo = page.getByPlaceholder("What needs to be done?");
 
@@ -180,6 +188,7 @@ test.describe("Item", () => {
     "should allow me to un-mark items as complete",
     { tag: "@test" },
     async ({ page }) => {
+      await allure.severity("normal");
       // create a new todo locator
       const newTodo = page.getByPlaceholder("What needs to be done?");
 
@@ -209,6 +218,7 @@ test.describe("Item", () => {
     "should allow me to edit an item",
     { tag: "@test" },
     async ({ page }) => {
+      await allure.severity("normal");
       await createDefaultTodos(page);
 
       const todoItems = page.getByTestId("todo-item");
@@ -243,6 +253,7 @@ test.describe("Editing", () => {
     "should hide other controls when editing",
     { tag: "@test" },
     async ({ page }) => {
+      await allure.severity("normal");
       const todoItem = page.getByTestId("todo-item").nth(1);
       await todoItem.dblclick();
       await expect(todoItem.getByRole("checkbox")).not.toBeVisible();
@@ -256,6 +267,7 @@ test.describe("Editing", () => {
   );
 
   test("should save edits on blur", { tag: "@test" }, async ({ page }) => {
+    await allure.severity("normal");
     const todoItems = page.getByTestId("todo-item");
     await todoItems.nth(1).dblclick();
     await todoItems
@@ -276,6 +288,7 @@ test.describe("Editing", () => {
   });
 
   test("should trim entered text", { tag: "@test" }, async ({ page }) => {
+    await allure.severity("normal");
     const todoItems = page.getByTestId("todo-item");
     await todoItems.nth(1).dblclick();
     await todoItems
@@ -299,6 +312,7 @@ test.describe("Editing", () => {
     "should remove the item if an empty text string was entered",
     { tag: "@test" },
     async ({ page }) => {
+      await allure.severity("normal");
       const todoItems = page.getByTestId("todo-item");
       await todoItems.nth(1).dblclick();
       await todoItems.nth(1).getByRole("textbox", { name: "Edit" }).fill("");
@@ -312,6 +326,7 @@ test.describe("Editing", () => {
   );
 
   test("should cancel edits on escape", { tag: "@test" }, async ({ page }) => {
+    await allure.severity("normal");
     const todoItems = page.getByTestId("todo-item");
     await todoItems.nth(1).dblclick();
     await todoItems
@@ -331,6 +346,7 @@ test.describe("Counter", () => {
     "should display the current number of todo items",
     { tag: "@test" },
     async ({ page }) => {
+      await allure.severity("normal");
       // create a new todo locator
       const newTodo = page.getByPlaceholder("What needs to be done?");
 
@@ -359,6 +375,7 @@ test.describe("Clear completed button", () => {
     "should display the correct text",
     { tag: "@test" },
     async ({ page }) => {
+      await allure.severity("normal");
       await page.locator(".todo-list li .toggle").first().check();
       await expect(
         page.getByRole("button", { name: "Clear completed" })
@@ -370,6 +387,7 @@ test.describe("Clear completed button", () => {
     "should remove completed items when clicked",
     { tag: "@test" },
     async ({ page }) => {
+      await allure.severity("normal");
       const todoItems = page.getByTestId("todo-item");
       await todoItems.nth(1).getByRole("checkbox").check();
       await page.getByRole("button", { name: "Clear completed" }).click();
@@ -382,6 +400,7 @@ test.describe("Clear completed button", () => {
     "should be hidden when there are no items that are completed",
     { tag: "@test" },
     async ({ page }) => {
+      await allure.severity("normal");
       await page.locator(".todo-list li .toggle").first().check();
       await page.getByRole("button", { name: "Clear completed" }).click();
       await expect(
@@ -393,6 +412,7 @@ test.describe("Clear completed button", () => {
 
 test.describe("Persistence", () => {
   test("should persist its data", { tag: "@test" }, async ({ page }) => {
+    await allure.severity("normal");
     // create a new todo locator
     const newTodo = page.getByPlaceholder("What needs to be done?");
 
@@ -432,6 +452,7 @@ test.describe("Routing", () => {
     "should allow me to display active items",
     { tag: "@test" },
     async ({ page }) => {
+      await allure.severity("normal");
       const todoItem = page.getByTestId("todo-item");
       await page.getByTestId("todo-item").nth(1).getByRole("checkbox").check();
 
@@ -443,6 +464,7 @@ test.describe("Routing", () => {
   );
 
   test("should respect the back button", { tag: "@test" }, async ({ page }) => {
+    await allure.severity("normal");
     const todoItem = page.getByTestId("todo-item");
     await page.getByTestId("todo-item").nth(1).getByRole("checkbox").check();
 
@@ -472,6 +494,7 @@ test.describe("Routing", () => {
     "should allow me to display completed items",
     { tag: "@test" },
     async ({ page }) => {
+      await allure.severity("normal");
       await page.getByTestId("todo-item").nth(1).getByRole("checkbox").check();
       await checkNumberOfCompletedTodosInLocalStorage(page, 1);
       await page.getByRole("link", { name: "Completed" }).click();
@@ -483,6 +506,7 @@ test.describe("Routing", () => {
     "should allow me to display all items",
     { tag: "@test" },
     async ({ page }) => {
+      await allure.severity("normal");
       await page.getByTestId("todo-item").nth(1).getByRole("checkbox").check();
       await checkNumberOfCompletedTodosInLocalStorage(page, 1);
       await page.getByRole("link", { name: "Active" }).click();
@@ -496,6 +520,7 @@ test.describe("Routing", () => {
     "should highlight the currently applied filter",
     { tag: "@test" },
     async ({ page }) => {
+      await allure.severity("normal");
       await expect(page.getByRole("link", { name: "All" })).toHaveClass(
         "selected"
       );
